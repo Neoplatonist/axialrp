@@ -1,0 +1,11 @@
+/node_modules
+/remote-profile
+/vendor
+/bin
+/pkg
+/src
+/server/bindata.go
+/server/data/static/build
+
+.pid
+.DS_Store
