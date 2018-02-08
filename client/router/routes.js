@@ -1,8 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute, Redirect } from 'react-router';
 import App from '#app/components/app';
-import Homepage from '#app/components/homepage';
-import Usage from '#app/components/usage';
+import Dashboard from '#app/components/pages/dashboard';
+import Generator from '#app/components/pages/generator';
+import Character from '#app/components/pages/character';
+import List from '#app/components/pages/list';
+import Wiki from '#app/components/pages/wiki';
 import NotFound from '#app/components/not-found';
 
 /**
@@ -26,8 +29,13 @@ export default ({store, first}) => {
   }
 
   return <Route path="/" component={App}>
-    <IndexRoute component={Homepage} onEnter={w(Homepage.onEnter)}/>
-    <Route path="/usage" component={Usage} onEnter={w(Usage.onEnter)}/>
+    <IndexRoute component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
+    <Route path="/generator" component={Generator} onEnter={w(Generator.onEnter)}/>
+    <Route path="/character" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
+    <Route path="/list" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
+    <Route path="/wiki" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
+
+    {/* <Route path="/usage" component={Usage} onEnter={w(Usage.onEnter)}/> */}
     {/* Server redirect in action */}
     <Redirect from="/docs" to="/usage" />
     <Route path="*" component={NotFound} onEnter={w(NotFound.onEnter)}/>

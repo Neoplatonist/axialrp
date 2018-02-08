@@ -1,9 +1,9 @@
-.example {
+.title {
   color: $mainColor;
-  font-size: px(40);
   font-weight: 500;
-  max-width: px(500);
-  margin: 0 auto;
+  /* max-width: px(500); */
+  /* margin: 0 auto; */
+  text-align: center;
 }
 
 .link {
@@ -27,7 +27,14 @@
   }
 }
 
-.p {
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 320px)  {
+  .title {
+    height: 25px;
+  }
+}
+
+/* .p {
   color: $mainColor;
 }
 
@@ -41,4 +48,4 @@
   background-color: $mainColor;
   display: inline-block;
   border-radius: px(3);
-}
+} */

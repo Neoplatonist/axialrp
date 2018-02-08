@@ -1,0 +1,26 @@
+#navList {
+  float: right;
+  list-style-type: none;
+  display: flex;
+  align-items: flex-start;
+  padding: 1.8rem 2rem;
+  color: white;
+}
+
+.navListItem {
+  display: inline-block;
+  margin: 0 1.2rem;
+}
+
+.menu {
+  margin: 1.5rem 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 320px)  {
+  .menu {
+    margin: 0.9rem 1.5rem;
+  }
+}
