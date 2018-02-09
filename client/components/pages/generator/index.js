@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AbilityModifier, Dice } from './utils';
+import { input } from './styles';
 
 // Mock Database
 import { race } from '../db.js';
@@ -102,16 +103,14 @@ class Generator extends Component {
         <div>
           {abilityMap.map((v, k) => {
             return (
-              <div key={v+k}>
-                <BoundAbility 
-                  stateKey={v} 
-                  label={v[0].toUpperCase() + v.substr(1) + ": "} />
-
-                <p>mod: {mod[k]}</p>
-              </div>
+              <BoundAbility 
+                key={v+k}
+                stateKey={v} 
+                label={v[0].toUpperCase() + v.substr(1) + ": "} 
+                mod={mod[k]} />
             );
           })}
-        </div>
+        </div> 
       );
     };
 
@@ -121,35 +120,42 @@ class Generator extends Component {
 
         <form onSubmit={ e => e.preventDefault() }>
           <label htmlFor="character-name">Character Name: </label>
-          <input 
-            name="character-name" 
-            type="text" 
+          <input
+            name="character-name"
+            className={input}
+            type="text"
             onChange={ e => this.props.setCharacter({ name: e.target.value }) }
             value={this.props.character.name}/>
 
           <label htmlFor="gender">Gender: </label>
-          <input 
-            name="gender" 
+          <input
+            name="gender"
+            className={input}
             type="text" 
             onChange={ e => this.props.setCharacter({ gender: e.target.value }) }
             value={this.props.character.gender}/>
 
           <label htmlFor="age">Age: </label>
-          <input 
-            name="age" 
+          <input
+            name="age"
+            className={input}
             type="text" 
             onChange={ e => this.props.setCharacter({ age: e.target.value }) }
             value={this.props.character.age}/>
 
           <label htmlFor="height">Height: </label>
           <input
-            name="height"type="text" 
+            name="height"
+            className={input}
+            type="text" 
             onChange={ e => this.props.setCharacter({ height: e.target.value }) }
             value={this.props.character.height}/>
 
           <label htmlFor="xp">XP: </label>
           <input
-            name="xp"type="text" 
+            name="xp"
+            className={input}
+            type="text" 
             onChange={ e => this.props.setCharacter({ xp: e.target.value }) }
             value={this.props.character.xp}/>
 
@@ -157,8 +163,9 @@ class Generator extends Component {
 
 
           <label htmlFor="races">Race: </label>
-          <select 
-            name="races" 
+          <select
+            name="races"
+            className={input}
             onChange={this.onRaceChange}
             value={this.props.race}
           >
@@ -168,8 +175,9 @@ class Generator extends Component {
           <br/>
 
           <label htmlFor="sub-races">Sub-Race: </label>
-          <select 
-            name="sub-races" 
+          <select
+            name="sub-races"
+            className={input}
             onChange={this.onSubRaceChange}
             value={this.props.subrace}
           >
@@ -180,8 +188,9 @@ class Generator extends Component {
 
 
           <label htmlFor="class">Class: </label>
-          <select 
-            name="class" 
+          <select
+            name="class"
+            className={input}
             onChange={this.onSubRaceChange}
             value={this.props.subrace}
           >
@@ -192,7 +201,8 @@ class Generator extends Component {
 
           <label htmlFor="sub-class">SubClass: </label>
           <select 
-            name="sub-class" 
+            name="sub-class"
+            className={input}
             onChange={this.onSubRaceChange}
             value={this.props.subrace}
           >
