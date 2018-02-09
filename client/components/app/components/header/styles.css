@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.menuWrapper {
+  width: 1.2rem;
+}
+
 /* Portrait and Landscape */
 @media only screen and (max-device-width: 320px)  {
   .menu {

@@ -31,9 +31,9 @@ export default class Sidebar extends Component {
         {/* Just a nav off-click catcher */}
 
         <aside ref={this.setWrapperRef}>
-          <div onClick={this.handleClose}>
+          <span onClick={this.handleClose}>
             <i className={ exit + " fas fa-times"}></i>
-          </div>
+          </span>
           
           <h1 className={logo}>AxialRP</h1>
 

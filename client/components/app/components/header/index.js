@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Nav } from './components/nav';
-import { menu } from './styles';
+import { menu, menuWrapper } from './styles';
 
 export default class Header extends Component {
   handleHamburg = e => {
@@ -10,9 +10,9 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <div onClick={this.handleHamburg}>
+        <span className={menuWrapper} onClick={this.handleHamburg}>
           <i className={ menu + ' fas fa-bars fa-lg'}></i>
-        </div>
+        </span>
 
         {/* right nav  */}
 

@@ -69,7 +69,9 @@ class Generator extends Component {
 
   onRaceChange = e => {
     this.props.setRace(e.target.value);
-    this.props.setSubRace(race.find(v => v.name === e.target.value).sub_races[0].name);
+    this.props.setSubRace(
+      race.find(v => v.name === e.target.value).sub_races[0].name
+    );
     this.updateAbility();
 
     setTimeout(() => {
