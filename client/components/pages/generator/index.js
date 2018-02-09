@@ -8,6 +8,7 @@ import Ability from './components/ability';
 import { connect } from 'react-redux';
 import {
   setAbility,
+  setAbilityMod,
   setCharacter,
   setDice,
   setRace,
@@ -36,7 +37,6 @@ class Generator extends Component {
     const state = abilityMap.reduce((o, k, i) => ({ ...o, [k]: dice[i] }), {});
     this.props.setAbility(state);
     this.props.setDice(dice);
-    // this.setState({ ...state, dice });
   }
 
   handleRace = e => {
@@ -90,6 +90,29 @@ class Generator extends Component {
         onChange={ e => this.props.setAbility({ [stateKey]: e.target.value })} 
         {...props} />;
 
+    const AbilityWithMod = () => {
+      const mod = abilityMap.reduce((a, k) => 
+        [...a, AbilityModifier(this.props.ability[k])], []);
+
+      this.props.setAbilityMod(mod);
+
+      return (
+        <div>
+          {abilityMap.map((v, k) => {
+            return (
+              <div key={v+k}>
+                <BoundAbility 
+                  stateKey={v} 
+                  label={v[0].toUpperCase() + v.substr(1) + ": "} />
+
+                <p>mod: {mod[k]}</p>
+              </div>
+            );
+          })}
+        </div>
+      );
+    };
+
     return (
       <main>
         <h2>Character Generator</h2>
@@ -140,8 +163,7 @@ class Generator extends Component {
             { this.handleRace() }
           </select>
 
-          <br/><br/>
-
+          <br/>
 
           <label htmlFor="sub-races">Sub-Race: </label>
           <select 
@@ -164,6 +186,8 @@ class Generator extends Component {
             { this.handleSubRace() }
           </select>
 
+          <br/>
+
           <label htmlFor="sub-class">SubClass: </label>
           <select 
             name="sub-class" 
@@ -182,12 +206,8 @@ class Generator extends Component {
           <br/><br/>
 
           <h3>Ability Scores</h3>
-          <BoundAbility stateKey="strength" label="Strength: " />
-          <BoundAbility stateKey="dexterity" label="Dexterity: " />
-          <BoundAbility stateKey="constitution" label="Constitution: " />
-          <BoundAbility stateKey="intelligence" label="Intelligence: " />
-          <BoundAbility stateKey="wisdom" label="Wisdom: " />
-          <BoundAbility stateKey="charisma" label="Charisma: " />
+
+          <AbilityWithMod />
 
         </form>
       </main>
@@ -197,6 +217,7 @@ class Generator extends Component {
 
 const mapStateToProps = state => ({
   ability: state.generator.ability,
+  abilitMod: state.generator.abilitMod,
   character: state.generator.character,
   dice: state.generator.dice,
   race: state.generator.race,
@@ -205,6 +226,7 @@ const mapStateToProps = state => ({
 
 const boundActions = {
   setAbility,
+  setAbilityMod,
   setCharacter,
   setDice,
   setRace,

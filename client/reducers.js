@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { 
   SET_ABILITY,
+  SET_ABILITY_MOD,
   SET_CHARACTER,
   SET_DICE,
   SET_RACE,
@@ -16,6 +17,8 @@ const generatorState = {
     wisdom: 0,
     charisma: 0,
   },
+
+  abilityMod: [0, 0, 0, 0, 0, 0],
 
   character: {
     name: '',
@@ -41,6 +44,13 @@ const generator = (state = generatorState, action) => {
           ...state.ability,
           ...action.payload
         }
+      };
+      break;
+
+    case SET_ABILITY_MOD: 
+      return {
+        ...state,
+        abilityMod: action.payload
       };
       break;
 

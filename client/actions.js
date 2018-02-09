@@ -3,6 +3,7 @@
 **/
 
 export const SET_ABILITY = 'SET_ABILITY';
+export const SET_ABILITY_MOD = 'SET_ABILITY_MOD';
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const SET_DICE = 'SET_DICE';
 export const SET_RACE = 'SET_RACE';
@@ -17,6 +18,10 @@ export const SET_SUBRACE = 'SET_SUBRACE';
 
 export const setAbility = ability => {
   return { type: SET_ABILITY, payload: ability };
+};
+
+export const setAbilityMod = mod => {
+  return { type: SET_ABILITY_MOD, payload: mod };
 };
 
 export const setCharacter = character => {

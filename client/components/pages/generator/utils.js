@@ -13,4 +13,4 @@ export const Dice = (x, y) => {
   return die;
 };
 
-export const AbilityModifier = x => Math.floor((x - 10) / 2);
+export const AbilityModifier = x => Math.max(0, Math.floor((x - 10) / 2));
