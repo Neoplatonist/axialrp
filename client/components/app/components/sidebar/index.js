@@ -31,10 +31,10 @@ export default class Sidebar extends Component {
         {/* Just a nav off-click catcher */}
 
         <aside ref={this.setWrapperRef}>
-          <i 
-            className={ exit + " fas fa-times"}
-            onClick={this.handleClose}
-          ></i>
+          <div onClick={this.handleClose}>
+            <i className={ exit + " fas fa-times"}></i>
+          </div>
+          
           <h1 className={logo}>AxialRP</h1>
 
           { this.props.mobile && <MobileNav /> }
