@@ -3,20 +3,21 @@ import { AbilityModifier, Dice } from './utils';
 import { input } from './styles';
 
 // Mock Database
-import { race } from '../db.js';
+import { alignment, race } from '../db.js';
 import Ability from './components/ability';
 
 import { connect } from 'react-redux';
 import {
   setAbility,
   setAbilityMod,
+  setAlignment,
   setCharacter,
   setDice,
   setRace,
   setSubRace
 } from '../../../actions';
 
-const RaceOption = ({ name }) => <option value={name}>{name}</option>;
+const Option = ({ name }) => <option value={name}>{name}</option>;
 
 const ability = {
   strength: 0,
@@ -34,35 +35,47 @@ const abilityMap = [
 
 class Generator extends Component {
   componentDidMount() {
-    this.rollDice()
+    this.rollDice();
+    const align = race.find( e => e.name === this.props.race ).alignment.main;
+    this.props.setAlignment(align);
   }
 
   rollDice = () => {
-    const dice = Dice(20, 6)
+    const dice = Dice(20, 6);
     this.props.setDice(dice);
     setTimeout(() => this.updateAbility());
   }
 
+  handleAlignment = e => {
+    return alignment.map((v, k) => {
+      return <Option key={k} {...v} />;
+    });
+  }
+
   handleRace = e => {
-    return race.map((r, i) => {
-      return <RaceOption key={i} {...r} />
-    })
+    return race.map((v, k) => {
+      return <Option key={k} {...v} />;
+    });
   }
 
   handleSubRace = e => {
-    const subraces = race.find(r => r.name === this.props.race)
+    const subraces = race.find(v => v.name === this.props.race)
       .sub_races || {sub_races: []};
 
-    return subraces.map((r, i) => {
-      return <RaceOption key={i} {...r} />
-    })
+    return subraces.map((v, k) => {
+      return <Option key={k} {...v} />;
+    });
   }
 
   onRaceChange = e => {
     this.props.setRace(e.target.value);
-    const r = race.find(v => v.name === e.target.value);
-    this.props.setSubRace(r.sub_races[0].name);
+    this.props.setSubRace(race.find(v => v.name === e.target.value).sub_races[0].name);
     this.updateAbility();
+
+    setTimeout(() => {
+      const align = race.find( e => e.name === this.props.race ).alignment.main;
+      this.props.setAlignment(align);
+    });
   }
   
   onSubRaceChange = e => {
@@ -213,7 +226,17 @@ class Generator extends Component {
 
 
           <label htmlFor="level">Level: </label>
-          <input name="level" type="text" />
+          <input name="level" className={input} type="text" />
+
+          <label htmlFor="alignment">Alignment: </label>
+          <select 
+            name="alignment"
+            className={input}
+            onChange={ e => this.props.setAlignment }
+            value={this.props.alignment}
+          >
+            { this.handleAlignment() }
+          </select>
 
           <br/><br/>
 
@@ -232,6 +255,7 @@ class Generator extends Component {
 const mapStateToProps = state => ({
   ability: state.generator.ability,
   abilitMod: state.generator.abilitMod,
+  alignment: state.generator.alignment,
   character: state.generator.character,
   dice: state.generator.dice,
   race: state.generator.race,
@@ -240,11 +264,12 @@ const mapStateToProps = state => ({
 
 const boundActions = {
   setAbility,
+  setAlignment,
   setAbilityMod,
   setCharacter,
   setDice,
   setRace,
   setSubRace
-}
+};
 
 export default connect(mapStateToProps, boundActions)(Generator)

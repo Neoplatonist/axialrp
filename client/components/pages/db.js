@@ -10,7 +10,7 @@ export const race = [
     },
     alignment: {
       description: 'Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.',
-      main: 'Lawful'
+      main: 'Lawful Good',
     },
     size: {
       description: 'Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.',
@@ -61,7 +61,7 @@ export const race = [
     },
     alignment: {
       description: 'Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others’ freedom as well as their own, and they are more often good than not. The drow are an exception; their exile has made them vicious and dangerous. Drow are more often evil than not.',
-      main: 'Chaos'
+      main: 'Chaotic Good'
     },
     size: {
       description: 'Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.',
@@ -101,5 +101,44 @@ export const race = [
       tools: ['Smith Tools', 'Brewer Supplies', 'Mason Tools']
     },
     weapon_proficiency: ['Longswords', 'Shortswords', 'Shortbows', 'Longbows']
+  }
+];
+
+export const alignment = [
+  {
+    name: 'Lawful Good',
+    description: 'Those who can be counted on to do the right thing as expected by society.'
+  },
+  {
+    name: 'Lawful Neutral',
+    description: 'Those who act in accordance with law, tradition, or personal codes.'
+  },
+  {
+    name: 'Lawful Evil',
+    description: 'Those who methodically take what they want, within the limits of a code of tradition, loyalty, or order.'
+  },
+  {
+    name: 'Neutral Good',
+    description: 'Those who do the best they can to help others according to their needs.'
+  },
+  {
+    name: 'Neutral',
+    description: 'Those who who prefer to steer clear of moral questions and don\'t take sides.'
+  },
+  {
+    name: 'Neutral Evil',
+    description: 'Those who do whatever they can get away with, without compassion or qualms.'
+  },
+  {
+    name: 'Chaotic Good',
+    description: 'Those who act as their conscience directs, with little regard for what others expect.'
+  },
+  {
+    name: 'Chaotic Neutral',
+    description: 'Those who follow their whims, holding their personal freedom above all else.'
+  },
+  {
+    name: 'Chaotic Evil',
+    description: 'Those who act with arbitrary violence, spurred by their greed, hatred, or bloodlust.'
   }
 ];

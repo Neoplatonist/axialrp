@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { 
   SET_ABILITY,
   SET_ABILITY_MOD,
+  SET_ALIGNMENT,
   SET_CHARACTER,
   SET_DICE,
   SET_RACE,
@@ -19,6 +20,8 @@ const generatorState = {
   },
 
   abilityMod: [0, 0, 0, 0, 0, 0],
+
+  alignment: '',
 
   character: {
     name: '',
@@ -51,6 +54,13 @@ const generator = (state = generatorState, action) => {
       return {
         ...state,
         abilityMod: action.payload
+      };
+      break;
+
+    case SET_ALIGNMENT: 
+      return {
+        ...state,
+        alignment: action.payload
       };
       break;
 

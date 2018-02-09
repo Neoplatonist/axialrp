@@ -1,0 +1,36 @@
+db.alignmentdb.insert({
+  alignment: "Lawful Good",
+  description: Those who can be counted on to do the right thing as expected by society."
+});
+db.alignmentdb.insert({
+  alignment: "Lawful Neutral",
+  description: "Those who act in accordance with law, tradition, or personal codes."
+});
+db.alignmentdb.insert({
+  alignment: "Lawful Evil"
+  description: "Those who methodically take what they want, within the limits of a code of tradition, loyalty, or order."
+});
+db.alignmentdb.insert({
+  alignment: "Neutral Good",
+  description: "Those who do the best they can to help others according to their needs."
+});
+db.alignmentdb.insert({
+  alignment: "Neutral",
+  description: "Those who who prefer to steer clear of moral questions and don't take sides."
+});
+db.alignmentdb.insert({
+  alignment: "Neutral Evil",
+  description: "Those who do whatever they can get away with, without compassion or qualms."
+});
+db.alignmentdb.insert({
+  alignment: "Chaotic Good",
+  description: "Those who act as their conscience directs, with little regard for what others expect."
+});
+db.alignmentdb.insert({
+  alignment: "Chaotic Neutral",
+  description: "Those who follow their whims, holding their personal freedom above all else."
+});
+db.alignmentdb.insert({
+  alignment: "Chaotic Evil",
+  description: "Those who act with arbitrary violence, spurred by their greed, hatred, or bloodlust."
+});
