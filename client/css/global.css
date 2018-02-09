@@ -54,11 +54,11 @@ a {
   color: inherit;
 }
 
-button, input, textarea {
+/* button, input, textarea {
   border: none;
   background: none;
   outline: none;
-}
+} */
 
 img {
   max-width: 100%;
