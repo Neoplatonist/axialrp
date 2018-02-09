@@ -4,16 +4,17 @@ import { menu } from './styles';
 
 export default class Header extends Component {
   handleHamburg = e => {
+    console.log('clicked');
     document.getElementById('sidebar').style.display = 'block';
   }
 
   render() {
     return (
       <header>
-        <i 
-          className={ menu + ' fas fa-bars fa-lg'}
-          onClick={this.handleHamburg}>
-        </i>
+        <a href="#" onClick={this.handleHamburg}>
+          <i className={ menu + ' fas fa-bars fa-lg'}></i>
+        </a>
+        
 
         {/* right nav  */}
 
