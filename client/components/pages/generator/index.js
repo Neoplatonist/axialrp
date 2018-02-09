@@ -33,10 +33,13 @@ const abilityMap = [
 
 class Generator extends Component {
   componentDidMount() {
+    this.rollDice()
+  }
+
+  rollDice = () => {
     const dice = Dice(20, 6)
-    const state = abilityMap.reduce((o, k, i) => ({ ...o, [k]: dice[i] }), {});
-    this.props.setAbility(state);
     this.props.setDice(dice);
+    setTimeout(() => this.updateAbility());
   }
 
   handleRace = e => {
@@ -57,7 +60,6 @@ class Generator extends Component {
   onRaceChange = e => {
     this.props.setRace(e.target.value);
     const r = race.find(v => v.name === e.target.value);
-    // We need to update the subrace because the race changed, just pick the first one
     this.props.setSubRace(r.sub_races[0].name);
     this.updateAbility();
   }
@@ -206,6 +208,8 @@ class Generator extends Component {
           <br/><br/>
 
           <h3>Ability Scores</h3>
+
+          <button onClick={this.rollDice}>ReRoll?</button>
 
           <AbilityWithMod />
 
