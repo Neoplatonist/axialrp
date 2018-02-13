@@ -6,28 +6,26 @@ import { input } from './styles';
 import { 
   alignment, 
   char_class, 
-  race 
+  race,
+  skills
 } from '../db.js';
 import Ability from './components/ability';
+import Class from './components/class';
+import Description from './components/description';
+import Race from './components/race';
+import SavingThrows from './components/savingThrows';
+import Skills from './components/skills';
+import Stats from './components/stats';
 
 import { connect } from 'react-redux';
 import {
   setAbility,
   setAbilityMod,
   setAlignment,
-  setCharacter,
-  setClass,
-  setDice,
-  setRace,
-  setSubRace
+  setDice
 } from '../../../actions';
 
 const Option = ({ name }) => <option value={name}>{name}</option>;
-
-const ability = {
-  strength: 0,
-  dexterity: 1
-}
 
 const abilityMap = [
   'strength', 
@@ -36,7 +34,7 @@ const abilityMap = [
   'intelligence', 
   'wisdom', 
   'charisma'
-]
+];
 
 class Generator extends Component {
   componentDidMount() {
@@ -57,52 +55,13 @@ class Generator extends Component {
     });
   }
 
-  handleClass = e => {
-    return char_class.map((v, k) => {
-      return <Option key={k} {...v} />;
-    })
-  }
-
-  handleRace = e => {
-    return race.map((v, k) => {
-      return <Option key={k} {...v} />;
+  renderSkills() {
+    return skills.map((v, k) => {
+      return <Skills key={k} skill={v} />;
     });
   }
 
-  handleSubRace = e => {
-    const subraces = race.find(v => v.name === this.props.race)
-      .sub_races || {sub_races: []};
-
-    return subraces.map((v, k) => {
-      return <Option key={k} {...v} />;
-    });
-  }
-
-  onClassChange = e => {
-    this.props.setClass(e.target.value);
-    // this.updateFeatures();
-    // this.updateSpells();
-  }
-
-  onRaceChange = e => {
-    this.props.setRace(e.target.value);
-    this.props.setSubRace(
-      race.find(v => v.name === e.target.value).sub_races[0].name
-    );
-    this.updateAbility();
-
-    setTimeout(() => {
-      const align = race.find( e => e.name === this.props.race ).alignment.main;
-      this.props.setAlignment(align);
-    });
-  }
-  
-  onSubRaceChange = e => {
-    this.props.setSubRace(e.target.value);
-    this.updateAbility();
-  }
-  
-  updateAbility() {
+  updateAbility = e => {
     const r = race.find(v => v.name === this.props.race);
     const sr = r.sub_races.find(v => v.name === this.props.subrace);
     const ability = abilityMap.reduce((o, k, i) => (
@@ -111,6 +70,7 @@ class Generator extends Component {
         [k]: this.props.dice[i] + r.ability_bonus[i] + sr.ability_bonus[i],
       }), {}
     );
+
     this.props.setAbility(ability);
   }
 
@@ -151,97 +111,17 @@ class Generator extends Component {
         <h2>Character Generator</h2>
 
         <form onSubmit={ e => e.preventDefault() }>
-          <label htmlFor="character-name">Character Name: </label>
-          <input
-            name="character-name"
-            className={input}
-            type="text"
-            onChange={ e => this.props.setCharacter({ name: e.target.value }) }
-            value={this.props.character.name}/>
-
-          <label htmlFor="gender">Gender: </label>
-          <input
-            name="gender"
-            className={input}
-            type="text" 
-            onChange={ e => this.props.setCharacter({ gender: e.target.value }) }
-            value={this.props.character.gender}/>
-
-          <label htmlFor="age">Age: </label>
-          <input
-            name="age"
-            className={input}
-            type="text" 
-            onChange={ e => this.props.setCharacter({ age: e.target.value }) }
-            value={this.props.character.age}/>
-
-          <label htmlFor="height">Height: </label>
-          <input
-            name="height"
-            className={input}
-            type="text" 
-            onChange={ e => this.props.setCharacter({ height: e.target.value }) }
-            value={this.props.character.height}/>
-
-          <label htmlFor="xp">XP: </label>
-          <input
-            name="xp"
-            className={input}
-            type="text" 
-            onChange={ e => this.props.setCharacter({ xp: e.target.value }) }
-            value={this.props.character.xp}/>
-
-          <br/><br/>
-
-
-          <label htmlFor="races">Race: </label>
-          <select
-            name="races"
-            className={input}
-            onChange={this.onRaceChange}
-            value={this.props.race}
-          >
-            { this.handleRace() }
-          </select>
+          <Description />
 
           <br/>
 
-          <label htmlFor="sub-races">Sub-Race: </label>
-          <select
-            name="sub-races"
-            className={input}
-            onChange={this.onSubRaceChange}
-            value={this.props.subrace}
-          >
-            { this.handleSubRace() }
-          </select>
-
-          <br/><br/>
-
-
-          <label htmlFor="class">Class: </label>
-          <select
-            name="class"
-            className={input}
-            onChange={this.onClassChange}
-            value={this.props.class}
-          >
-            { this.handleClass() }
-          </select>
+          <Race mockRace={race} updateAbility={this.updateAbility} />
 
           <br/>
 
-          {/* <label htmlFor="sub-class">SubClass: </label>
-          <select 
-            name="sub-class"
-            className={input}
-            onChange={this.onSubRaceChange}
-            value={this.props.subrace}
-          >
-            { this.handleSubRace() }
-          </select> */}
+          <Class mockClass={char_class} />
 
-          <br/><br/>
+          <br/>
 
 
           <label htmlFor="level">Level: </label>
@@ -265,6 +145,21 @@ class Generator extends Component {
 
           <AbilityWithMod />
 
+          <br/><br/>
+
+          <Stats />
+
+          <br/><br/>
+
+          <SavingThrows />
+
+          <br/><br/>
+
+          <h3>Skills</h3>
+
+          <br/>
+
+          { this.renderSkills() }
         </form>
       </main>
     );
@@ -275,22 +170,17 @@ const mapStateToProps = state => ({
   ability: state.generator.ability,
   abilitMod: state.generator.abilitMod,
   alignment: state.generator.alignment,
-  character: state.generator.character,
-  class: state.generator.class,
   dice: state.generator.dice,
   race: state.generator.race,
-  subrace: state.generator.subrace,
+  speed: state.generator.speed,
+  subrace: state.generator.subrace
 });
 
 const boundActions = {
   setAbility,
   setAlignment,
   setAbilityMod,
-  setCharacter,
-  setClass,
-  setDice,
-  setRace,
-  setSubRace
+  setDice
 };
 
-export default connect(mapStateToProps, boundActions)(Generator)
+export default connect(mapStateToProps, boundActions)(Generator);
