@@ -4,6 +4,7 @@ import {
   SET_ABILITY_MOD,
   SET_ALIGNMENT,
   SET_CHARACTER,
+  SET_CLASS,
   SET_DICE,
   SET_RACE,
   SET_SUBRACE
@@ -30,6 +31,8 @@ const generatorState = {
     height: '',
     xp: ''
   },
+
+  class: '',
 
   dice: [],
 
@@ -71,6 +74,13 @@ const generator = (state = generatorState, action) => {
           ...state.character,
           ...action.payload
         }
+      };
+      break;
+
+    case SET_CLASS: 
+      return {
+        ...state,
+        class: action.payload
       };
       break;
 

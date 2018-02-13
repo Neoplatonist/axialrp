@@ -6,6 +6,7 @@ export const SET_ABILITY = 'SET_ABILITY';
 export const SET_ABILITY_MOD = 'SET_ABILITY_MOD';
 export const SET_ALIGNMENT = 'SET_ALIGNMENT';
 export const SET_CHARACTER = 'SET_CHARACTER';
+export const SET_CLASS = 'SET_CLASS';
 export const SET_DICE = 'SET_DICE';
 export const SET_RACE = 'SET_RACE';
 export const SET_SUBRACE = 'SET_SUBRACE';
@@ -31,6 +32,10 @@ export const setAlignment = alignment => {
 
 export const setCharacter = character => {
   return { type: SET_CHARACTER, payload: character };
+};
+
+export const setClass = char_class => {
+  return { type: SET_CHARACTER, payload: char_class };
 };
 
 export const setDice = dice => {

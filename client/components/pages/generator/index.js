@@ -3,7 +3,11 @@ import { AbilityModifier, Dice } from './utils';
 import { input } from './styles';
 
 // Mock Database
-import { alignment, race } from '../db.js';
+import { 
+  alignment, 
+  char_class, 
+  race 
+} from '../db.js';
 import Ability from './components/ability';
 
 import { connect } from 'react-redux';
@@ -12,6 +16,7 @@ import {
   setAbilityMod,
   setAlignment,
   setCharacter,
+  setClass,
   setDice,
   setRace,
   setSubRace
@@ -50,6 +55,12 @@ class Generator extends Component {
     return alignment.map((v, k) => {
       return <Option key={k} {...v} />;
     });
+  }
+
+  handleClass = e => {
+    return char_class.map((v, k) => {
+      return <Option key={k} {...v} />;
+    })
   }
 
   handleRace = e => {
@@ -207,14 +218,14 @@ class Generator extends Component {
             name="class"
             className={input}
             onChange={this.onSubRaceChange}
-            value={this.props.subrace}
+            value={this.props.class}
           >
-            { this.handleSubRace() }
+            { this.handleClass() }
           </select>
 
           <br/>
 
-          <label htmlFor="sub-class">SubClass: </label>
+          {/* <label htmlFor="sub-class">SubClass: </label>
           <select 
             name="sub-class"
             className={input}
@@ -222,7 +233,7 @@ class Generator extends Component {
             value={this.props.subrace}
           >
             { this.handleSubRace() }
-          </select>
+          </select> */}
 
           <br/><br/>
 
@@ -259,6 +270,7 @@ const mapStateToProps = state => ({
   abilitMod: state.generator.abilitMod,
   alignment: state.generator.alignment,
   character: state.generator.character,
+  class: state.generator.class,
   dice: state.generator.dice,
   race: state.generator.race,
   subrace: state.generator.subrace,
@@ -269,6 +281,7 @@ const boundActions = {
   setAlignment,
   setAbilityMod,
   setCharacter,
+  setClass,
   setDice,
   setRace,
   setSubRace

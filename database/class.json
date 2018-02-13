@@ -1,0 +1,46 @@
+{
+  "barbarian": {
+    "name": "Barbarian",
+    "hit_die": 12,
+    "proficiencies": {
+      "armor": ["Light Armor", "Medium Armor", "Shields"],
+      "saving_throws": ["Strength", "Constitution"],
+      "skills": {
+        "choose": 2,
+        "from": [
+          "Animal Handling", "Athletics", "Intimidation", 
+          "Nature", "Perception", "Survival"
+        ]
+      },
+      "tools": [],
+      "weapons": ["Simple Weapons", "Martial Weapons"]
+    },
+    "spellcasting": {
+      
+    }
+  },
+
+  "bard": {
+    "name": "Bard",
+    "hit_die": 8,
+    "proficiencies": {
+      "armor": ["Light Armor"],
+      "saving_throws": ["Strength", "Constitution"],
+      "skills": {
+        "choose": 3,
+        "from": [
+          "Animal Handling", "Athletics", "Intimidation", 
+          "Nature", "Perception", "Survival"
+        ]
+      },
+      "tools": [],
+      "weapons": [
+        "Simple Weapons", "Hand Crossbows", "Longswords",
+        "Rapiers", "Shortswords"
+      ]
+    },
+    "spellcasting": {
+      
+    }
+  }
+}

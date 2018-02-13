@@ -5,16 +5,26 @@ import { MobileNav } from './components/mobilenav';
 export default class Sidebar extends Component {
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('click', this.handleNavClick, false);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('click', this.handleNavClick, false);
   }
 
   handleClickOutside = e => {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
       this.wrapperRef.parentNode.style.display = 'none';
     }
+  }
+
+  handleNavClick = e => {
+    if (e.target !== e.currentTarget && e.target.nodeName === 'A') {
+      document.getElementById('sidebar').style.display = 'none';
+    }
+
+    e.stopPropagation();
   }
 
   handleClose = e => {

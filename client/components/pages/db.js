@@ -142,3 +142,99 @@ export const alignment = [
     description: 'Those who act with arbitrary violence, spurred by their greed, hatred, or bloodlust.'
   }
 ];
+
+export const char_class = [
+  {
+    name: 'Barbarian',
+    hit_die: 12,
+    proficiency_choices: [
+      {
+        choose: 2,
+        type: 'proficiencies',
+        from: [
+          { name: 'Skill: Animal Handling' },
+          { name: 'Skill: Athletics' },
+          { name: 'Skill: Intimidation' },
+          { name: 'Skill: Nature' },
+          { name: 'Skill: Perception' },
+          { name: 'Skill: Survival' }
+        ]
+      }
+    ],
+    proficiencies: [
+      { name: 'Light armor' },
+      { name: 'Medium armor' },
+      { name: 'Shields' },
+      { name: 'Simple weapons' },
+      { name: 'Martial weapons' }
+    ],
+    saving_throws: [
+      { name: 'Strength' },
+      { name: 'Constitution' }
+    ],
+    starting_equipment: { class: 'Barbarian' },
+    spellcasting: {}
+  },
+  {
+    name: 'Bard',
+    hit_die: 8,
+    proficiency_choices: [
+      {
+        choose: 2,
+        type: 'proficiencies',
+        from: [
+          { name: 'Skill: Animal Handling' },
+          { name: 'Skill: Athletics' },
+          { name: 'Skill: Intimidation' },
+          { name: 'Skill: Nature' },
+          { name: 'Skill: Perception' },
+          { name: 'Skill: Survival' }
+        ]
+      }
+    ],
+    proficiencies: [
+      { name: 'Light armor' },
+      { name: 'Medium armor' },
+      { name: 'Shields' },
+      { name: 'Simple weapons' },
+      { name: 'Martial weapons' }
+    ],
+    saving_throws: [
+      { name: 'Strength' },
+      { name: 'Constitution' }
+    ],
+    starting_equipment: { class: 'Bard' },
+    spellcasting: {}
+  },
+  {
+    name: 'Cleric',
+    hit_die: 8,
+    proficiency_choices: [
+      {
+        choose: 2,
+        type: 'proficiencies',
+        from: [
+          { name: 'Skill: Animal Handling' },
+          { name: 'Skill: Athletics' },
+          { name: 'Skill: Intimidation' },
+          { name: 'Skill: Nature' },
+          { name: 'Skill: Perception' },
+          { name: 'Skill: Survival' }
+        ]
+      }
+    ],
+    proficiencies: [
+      { name: 'Light armor' },
+      { name: 'Medium armor' },
+      { name: 'Shields' },
+      { name: 'Simple weapons' },
+      { name: 'Martial weapons' }
+    ],
+    saving_throws: [
+      { name: 'Strength' },
+      { name: 'Constitution' }
+    ],
+    starting_equipment: { class: 'Cleric' },
+    spellcasting: {}
+  }
+];

@@ -31,9 +31,9 @@ export default ({store, first}) => {
   return <Route path="/" component={App}>
     <IndexRoute component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
     <Route path="/generator" component={Generator} onEnter={w(Generator.onEnter)}/>
-    <Route path="/character" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
-    <Route path="/list" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
-    <Route path="/wiki" component={Dashboard} onEnter={w(Dashboard.onEnter)}/>
+    <Route path="/character" component={Character} onEnter={w(Character.onEnter)}/>
+    <Route path="/list" component={List} onEnter={w(List.onEnter)}/>
+    <Route path="/wiki" component={Wiki} onEnter={w(Wiki.onEnter)}/>
 
     {/* <Route path="/usage" component={Usage} onEnter={w(Usage.onEnter)}/> */}
     {/* Server redirect in action */}
