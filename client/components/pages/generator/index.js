@@ -45,7 +45,7 @@ class Generator extends Component {
     this.props.setAlignment(align);
   }
 
-  rollDice = () => {
+  rollDice = e => {
     const dice = Dice(20, 6);
     this.props.setDice(dice);
     setTimeout(() => this.updateAbility());
@@ -76,6 +76,12 @@ class Generator extends Component {
     return subraces.map((v, k) => {
       return <Option key={k} {...v} />;
     });
+  }
+
+  onClassChange = e => {
+    this.props.setClass(e.target.value);
+    // this.updateFeatures();
+    // this.updateSpells();
   }
 
   onRaceChange = e => {
@@ -217,7 +223,7 @@ class Generator extends Component {
           <select
             name="class"
             className={input}
-            onChange={this.onSubRaceChange}
+            onChange={this.onClassChange}
             value={this.props.class}
           >
             { this.handleClass() }

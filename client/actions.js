@@ -35,7 +35,7 @@ export const setCharacter = character => {
 };
 
 export const setClass = char_class => {
-  return { type: SET_CHARACTER, payload: char_class };
+  return { type: SET_CLASS, payload: char_class };
 };
 
 export const setDice = dice => {
