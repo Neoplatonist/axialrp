@@ -33,11 +33,13 @@ class Race extends Component {
     const r = this.props.mockRace.find(v => v.name === e.target.value)
     this.props.setRace(e.target.value);
     this.props.setSubRace(r.sub_races[0].name);
-    
-    this.props.updateAbility();
 
-    this.props.setAlignment(r.alignment.main);
-    this.props.setSpeed(r.speed.base);
+    setTimeout(() => {
+      this.props.updateAbility();
+
+      this.props.setAlignment(r.alignment.main);
+      this.props.setSpeed(r.speed.base);
+    });
   }
 
   onSubRaceChange = e => {
