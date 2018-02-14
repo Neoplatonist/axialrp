@@ -22,7 +22,8 @@ import {
   setAbility,
   setAbilityMod,
   setAlignment,
-  setDice
+  setDice,
+  setHP
 } from '../../../actions';
 
 const Option = ({ name }) => <option value={name}>{name}</option>;
@@ -90,6 +91,11 @@ class Generator extends Component {
         [...a, AbilityModifier(this.props.ability[k])], []);
 
       this.props.setAbilityMod(mod);
+
+      const hit_die = char_class.find( v => v.name === this.props.class).hit_die;
+
+        // TODO: Constitution is for level 1 only.
+      this.props.setHP(hit_die + mod[2]);
 
       return (
         <div>
@@ -170,6 +176,7 @@ const mapStateToProps = state => ({
   ability: state.generator.ability,
   abilitMod: state.generator.abilitMod,
   alignment: state.generator.alignment,
+  class: state.generator.class,
   dice: state.generator.dice,
   race: state.generator.race,
   speed: state.generator.speed,
@@ -180,7 +187,8 @@ const boundActions = {
   setAbility,
   setAlignment,
   setAbilityMod,
-  setDice
+  setDice,
+  setHP
 };
 
 export default connect(mapStateToProps, boundActions)(Generator);

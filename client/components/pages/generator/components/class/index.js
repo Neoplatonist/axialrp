@@ -4,7 +4,7 @@ import { input } from '../../styles';
 const Option = ({ name }) => <option value={name}>{name}</option>;
 
 import { connect } from 'react-redux';
-import { setClass } from '../../../../../actions';
+import { setClass, setHP } from '../../../../../actions';
 
 class Class extends Component {
   handleClass = e => {
@@ -15,6 +15,12 @@ class Class extends Component {
 
   onClassChange = e => {
     this.props.setClass(e.target.value);
+    const hit_die = this.props.mockClass
+      .find( v => v.name === e.target.value).hit_die;
+
+    // TODO: Constitution is for level 1 only.
+    this.props.setHP(hit_die + this.props.abilityMod[2]);
+    
     // this.updateFeatures();
     // this.updateSpells();
   }
@@ -47,11 +53,13 @@ class Class extends Component {
 }
 
 const mapStateToProps = state => ({
-  class: state.generator.class
+  class: state.generator.class,
+  abilityMod: state.generator.abilityMod
 });
 
 const boundActions = {
-  setClass
+  setClass,
+  setHP
 };
 
 export default connect(mapStateToProps, boundActions)(Class);

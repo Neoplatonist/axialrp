@@ -39,9 +39,9 @@ const generatorState = {
     xp: ''
   },
 
-  class: '',
+  class: 'Barbarian',
   dice: [],
-  hp: 0,
+  hp: 12,
   initiative: 0,
   inspiration: 0,
   proficiencyBonus: 0,
